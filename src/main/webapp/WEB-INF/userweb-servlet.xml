@@ -6,10 +6,10 @@
 				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd 
 				http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<context:component-scan base-package="com.bd17kaka.marketing.controller" />
-	<context:component-scan base-package="com.bd17kaka.marketing.service" />
-	<context:component-scan base-package="com.bd17kaka.marketing.dao" />
-	<context:component-scan base-package="com.bd17kaka.marketing.handler" />
+	<context:component-scan base-package="com.bd17kaka.changero.controller" />
+	<context:component-scan base-package="com.bd17kaka.changero.service" />
+	<context:component-scan base-package="com.bd17kaka.changero.dao" />
+	<context:component-scan base-package="com.bd17kaka.changero.handler" />
 
 	<!-- 拦截器配置 <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"> 
 		<property name="interceptors"> <list> <ref bean="identityInterceptor" /> 

@@ -1,500 +1,717 @@
-/* JS */
+/* -------------------- Check Browser --------------------- */
 
+function browser() {
+	
+	//var isOpera = !!(window.opera && window.opera.version);  // Opera 8.0+
+	//var isFirefox = testCSS('MozBoxSizing');                 // FF 0.8+
+	var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+	    // At least Safari 3+: "[object HTMLElementConstructor]"
+	var isChrome = !isSafari && testCSS('WebkitTransform');  // Chrome 1+
+	//var isIE = /*@cc_on!@*/false || testCSS('msTransform');  // At least IE6
 
-/* Navigation */
+	function testCSS(prop) {
+	    return prop in document.documentElement.style;
+	}
+	
+	if (isSafari || isChrome) {
+		
+		return true;
+		
+	} else {
+		
+		return false;
+		
+	}
+	
+}
 
-$(document).ready(function(){
+/* -------------------- Placeholder for IE --------------------- */
 
-  $(window).resize(function()
-  {
-    if($(window).width() >= 765){
-      $(".sidebar .sidebar-inner").slideDown(350);
-    }
-    else{
-      $(".sidebar .sidebar-inner").slideUp(350); 
-    }
-  });
+jQuery(document).ready(function($) {
 
-});
-
-$(document).ready(function(){
-
-  $(".has_submenu > a").click(function(e){
-    e.preventDefault();
-    var menu_li = $(this).parent("li");
-    var menu_ul = $(this).next("ul");
-
-    if(menu_li.hasClass("open")){
-      menu_ul.slideUp(350);
-      menu_li.removeClass("open")
-    }
-    else{
-      $(".navi > li > ul").slideUp(350);
-      $(".navi > li").removeClass("open");
-      menu_ul.slideDown(350);
-      menu_li.addClass("open");
-    }
-  });
-
-});
-
-$(document).ready(function(){
-  $(".sidebar-dropdown a").on('click',function(e){
-      e.preventDefault();
-
-      if(!$(this).hasClass("dropy")) {
-        // hide any open menus and remove all other classes
-        $(".sidebar .sidebar-inner").slideUp(350);
-        $(".sidebar-dropdown a").removeClass("dropy");
-        
-        // open our new menu and add the dropy class
-        $(".sidebar .sidebar-inner").slideDown(350);
-        $(this).addClass("dropy");
-      }
-      
-      else if($(this).hasClass("dropy")) {
-        $(this).removeClass("dropy");
-        $(".sidebar .sidebar-inner").slideUp(350);
-      }
-  });
-
-});
-
-/* Widget close */
-
-$('.wclose').click(function(e){
-  e.preventDefault();
-  var $wbox = $(this).parent().parent().parent();
-  $wbox.hide(100);
-});
-
-/* Widget minimize */
-
-  $('.wminimize').click(function(e){
-    e.preventDefault();
-    var $wcontent = $(this).parent().parent().next('.widget-content');
-    if($wcontent.is(':visible')) 
-    {
-      $(this).children('i').removeClass('icon-chevron-up');
-      $(this).children('i').addClass('icon-chevron-down');
-    }
-    else 
-    {
-      $(this).children('i').removeClass('icon-chevron-down');
-      $(this).children('i').addClass('icon-chevron-up');
-    }            
-    $wcontent.toggle(500);
-  }); 
-
-/* Calendar */
-
-  $(document).ready(function() {
-  
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
+	// Invoke the plugin
+    $('input, textarea').placeholder();
+    // That’s it, really.
+    // Now display a message if the browser supports placeholder natively
+    var html;
     
-    $('#calendar').fullCalendar({
-      header: {
-        left: 'prev',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay,next'
-      },
-      editable: true,
-      events: [
-        {
-          title: 'All Day Event',
-          start: new Date(y, m, 1)
-        },
-        {
-          title: 'Long Event',
-          start: new Date(y, m, d-5),
-          end: new Date(y, m, d-2)
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: new Date(y, m, d-3, 16, 0),
-          allDay: false
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: new Date(y, m, d+4, 16, 0),
-          allDay: false
-        },
-        {
-          title: 'Meeting',
-          start: new Date(y, m, d, 10, 30),
-          allDay: false
-        },
-        {
-          title: 'Lunch',
-          start: new Date(y, m, d, 12, 0),
-          end: new Date(y, m, d, 14, 0),
-          allDay: false
-        },
-        {
-          title: 'Birthday Party',
-          start: new Date(y, m, d+1, 19, 0),
-          end: new Date(y, m, d+1, 22, 30),
-          allDay: false
-        },
-        {
-          title: 'Click for Google',
-          start: new Date(y, m, 28),
-          end: new Date(y, m, 29),
-          url: 'http://google.com/'
-        }
-      ]
-    });
+});
+
+/* -------------------- Charts --------------------- */
+
+jQuery(document).ready(function($){
+		
+	function randNum(){
+		return (Math.floor( Math.random()* (1+40-20) ) ) + 20;
+	}
+	
+	if($("#stockPrice").length)
+	{
+		var price = [[1, randNum()-10], [2, randNum()-10], [3, randNum()-10], [4, randNum()],[5, randNum()],[6, 4+randNum()],[7, 5+randNum()],[8, 6+randNum()],[9, 6+randNum()],[10, 8+randNum()],[11, 9+randNum()],[12, 10+randNum()],[13,11+randNum()],[14, 12+randNum()],[15, 13+randNum()],[16, 14+randNum()],[17, 15+randNum()],[18, 15+randNum()],[19, 16+randNum()],[20, 17+randNum()],[21, 18+randNum()],[22, 19+randNum()],[23, 20+randNum()],[24, 21+randNum()],[25, 14+randNum()],[26, 24+randNum()],[27,25+randNum()],[28, 26+randNum()],[29, 27+randNum()], [30, 31+randNum()]];
+
+		var plot = $.plot($("#stockPrice"),
+			   [ { data: price, label: "price" } ], {
+				   series: {
+					   lines: { show: true,
+								lineWidth: 2,
+								fill: true, fillColor: { colors: [ { opacity: 0.5 }, { opacity: 0.2 } ] }
+							 },
+					   points: { show: true },
+					   shadowSize: 1
+				   },
+				   grid: { hoverable: true, 
+						   clickable: true, 
+						   tickColor: "#eee",
+						   borderWidth: 0,
+						 },
+				   colors: ["#414141"],
+					xaxis: {ticks:11, tickDecimals: 0},
+					yaxis: {tickFormatter: function (v) { return v + "USD"; }},
+				 });
+
+		function showTooltip(x, y, contents) {
+			$('<div id="tooltip">' + contents + '</div>').css( {
+				position: 'absolute',
+				display: 'none',
+				top: y + 5,
+				left: x + 5,
+				border: '1px solid #fdd',
+				padding: '2px',
+				'background-color': '#dfeffc',
+				opacity: 0.80
+			}).appendTo("body").fadeIn(200);
+		}
+
+		var previousPoint = null;
+		$("#stockPrice").bind("plothover", function (event, pos, item) {
+			$("#x").text(pos.x.toFixed(2));
+			$("#y").text(pos.y.toFixed(2));
+
+				if (item) {
+					if (previousPoint != item.dataIndex) {
+						previousPoint = item.dataIndex;
+
+						$("#tooltip").remove();
+						var x = item.datapoint[0].toFixed(2),
+							y = item.datapoint[1].toFixed(2);
+
+						showTooltip(item.pageX, item.pageY,
+									item.series.label + " of " + x + " = " + y);
+					}
+				}
+				else {
+					$("#tooltip").remove();
+					previousPoint = null;
+				}
+		
+		});
+		
+	}
+	
+	function randNumFB(){
+		return ((Math.floor( Math.random()* (1+40-20) ) ) + 20);
+	}
+	
+	/* ---------- Chart with points ---------- */
+	if($("#facebookChart").length)
+	{	
+		var likes = [[1, 5+randNumFB()], [2, 10+randNumFB()], [3, 15+randNumFB()], [4, 20+randNumFB()],[5, 25+randNumFB()],[6, 30+randNumFB()],[7, 35+randNumFB()],[8, 40+randNumFB()],[9, 45+randNumFB()],[10, 50+randNumFB()],[11, 55+randNumFB()],[12, 60+randNumFB()],[13, 65+randNumFB()],[14, 70+randNumFB()],[15, 75+randNumFB()],[16, 80+randNumFB()],[17, 85+randNumFB()],[18, 90+randNumFB()],[19, 85+randNumFB()],[20, 80+randNumFB()],[21, 75+randNumFB()],[22, 80+randNumFB()],[23, 75+randNumFB()],[24, 70+randNumFB()],[25, 65+randNumFB()],[26, 75+randNumFB()],[27,80+randNumFB()],[28, 85+randNumFB()],[29, 90+randNumFB()], [30, 95+randNumFB()]];
+
+		var plot = $.plot($("#facebookChart"),
+			   [ { data: likes, label: "Fans"} ], {
+				   series: {
+					   lines: { show: true,
+								lineWidth: 2,
+								fill: true, fillColor: { colors: [ { opacity: 0.5 }, { opacity: 0.2 } ] }
+							 },
+					   points: { show: true, 
+								 lineWidth: 2 
+							 },
+					   shadowSize: 0
+				   },
+				   grid: { hoverable: true, 
+						   clickable: true, 
+						   tickColor: "#ddd",
+						   borderWidth: 0
+						 },
+				   colors: ["#3B5998"],
+					xaxis: {ticks:6, tickDecimals: 0},
+					yaxis: {ticks:3, tickDecimals: 0},
+				 });
+
+		function showTooltip(x, y, contents) {
+			$('<div id="tooltip">' + contents + '</div>').css( {
+				position: 'absolute',
+				display: 'none',
+				top: y + 5,
+				left: x + 5,
+				border: '1px solid #fdd',
+				padding: '2px',
+				'background-color': '#dfeffc',
+				opacity: 0.80
+			}).appendTo("body").fadeIn(200);
+		}
+
+		var previousPoint = null;
+		$("#facebookChart").bind("plothover", function (event, pos, item) {
+			$("#x").text(pos.x.toFixed(2));
+			$("#y").text(pos.y.toFixed(2));
+
+				if (item) {
+					if (previousPoint != item.dataIndex) {
+						previousPoint = item.dataIndex;
+
+						$("#tooltip").remove();
+						var x = item.datapoint[0].toFixed(2),
+							y = item.datapoint[1].toFixed(2);
+
+						showTooltip(item.pageX, item.pageY,
+									item.series.label + " of " + x + " = " + y);
+					}
+				}
+				else {
+					$("#tooltip").remove();
+					previousPoint = null;
+				}
+		});
+	
+	}
+	
+	function randNumTW(){
+		return ((Math.floor( Math.random()* (1+40-20) ) ) + 20);
+	}
+	
+	/* ---------- Chart with points ---------- */
+	if($("#twitterChart").length)
+	{	
+		var followers = [[1, 5+randNumTW()], [2, 10+randNumTW()], [3, 15+randNumTW()], [4, 20+randNumTW()],[5, 25+randNumTW()],[6, 30+randNumTW()],[7, 35+randNumTW()],[8, 40+randNumTW()],[9, 45+randNumTW()],[10, 50+randNumTW()],[11, 55+randNumTW()],[12, 60+randNumTW()],[13, 65+randNumTW()],[14, 70+randNumTW()],[15, 75+randNumTW()],[16, 80+randNumTW()],[17, 85+randNumTW()],[18, 90+randNumTW()],[19, 85+randNumTW()],[20, 80+randNumTW()],[21, 75+randNumTW()],[22, 80+randNumTW()],[23, 75+randNumTW()],[24, 70+randNumTW()],[25, 65+randNumTW()],[26, 75+randNumTW()],[27,80+randNumTW()],[28, 85+randNumTW()],[29, 90+randNumTW()], [30, 95+randNumTW()]];
+
+		var plot = $.plot($("#twitterChart"),
+			   [ { data: followers, label: "Followers"} ], {
+				   series: {
+					   lines: { show: true,
+								lineWidth: 2,
+								fill: true, fillColor: { colors: [ { opacity: 0.5 }, { opacity: 0.2 } ] }
+							 },
+					   points: { show: true, 
+								 lineWidth: 2 
+							 },
+					   shadowSize: 0
+				   },
+				   grid: { hoverable: true, 
+						   clickable: true, 
+						   tickColor: "#ddd",
+						   borderWidth: 0
+						 },
+				   colors: ["#1BB2E9"],
+					xaxis: {ticks:6, tickDecimals: 0},
+					yaxis: {ticks:3, tickDecimals: 0},
+				 });
+
+		function showTooltip(x, y, contents) {
+			$('<div id="tooltip">' + contents + '</div>').css( {
+				position: 'absolute',
+				display: 'none',
+				top: y + 5,
+				left: x + 5,
+				border: '1px solid #fdd',
+				padding: '2px',
+				'background-color': '#dfeffc',
+				opacity: 0.80
+			}).appendTo("body").fadeIn(200);
+		}
+
+		var previousPoint = null;
+		$("#twitterChart").bind("plothover", function (event, pos, item) {
+			$("#x").text(pos.x.toFixed(2));
+			$("#y").text(pos.y.toFixed(2));
+
+				if (item) {
+					if (previousPoint != item.dataIndex) {
+						previousPoint = item.dataIndex;
+
+						$("#tooltip").remove();
+						var x = item.datapoint[0].toFixed(2),
+							y = item.datapoint[1].toFixed(2);
+
+						showTooltip(item.pageX, item.pageY,
+									item.series.label + " of " + x + " = " + y);
+					}
+				}
+				else {
+					$("#tooltip").remove();
+					previousPoint = null;
+				}
+		});
+	
+	}
+
+});
+
+/* -------------------- Search --------------------- */
+
+jQuery(document).ready(function($){
+	
+	$('.search > :input').on('keyup',function(){
+		
+		$(this).attr('class', 'activeSearch');
+
+		var count;
+		var timeToEnd = 1000;
+
+		$(':input').keydown(function(){
+
+			clearTimeout(count);
+
+			count = setTimeout(endCount, timeToEnd);
+
+		});
+
+	});
+
+	function endCount(){
+
+		$('.search > :input').attr('class','search-form');
+
+	}
+
+});
+
+/* -------------------- Buttons 3D Style --------------------- */
+
+jQuery(document).ready(function($){
+
+	$(':button').each(function(){
+
+		if($(this).hasClass('btn')) {
+
+			$(this).wrap('<div class="btn-overlay" />');
+
+			var inner = $(this).html();
+			
+			if(browser()) {
+
+				$(this).html('<span>' + inner + '</span>');
+				
+			}	
+
+		}
+
+	});
+	
+		
+	$('a').each(function(){
+
+		if($(this).hasClass('btnOverlay')) {
+			
+			$(this).wrap('<div class="btn-overlay" />');
+
+			var inner = $(this).html();
+			
+			if(browser()) {
+
+				$(this).html('<span>' + inner + '</span>');
+				
+			}	
+
+		}
+
+	});
+
+});
+
+/* -------------------- Twitter --------------------- */
+
+jQuery(document).ready(function($){
+	
+	$.getJSON('twitter.php?url='+encodeURIComponent('statuses/user_timeline.json?screen_name=bootstrapmaster&count=3&include_rts=false&exclude_replies=true'), function(tweets){
+		$("#twitter").html(tz_format_twitter(tweets));
+	}); 
+
+});
+
+/* ------------------- Fancybox --------------------- */
+jQuery(document).ready(function($){
+	
+	(function() {
+
+		$('[rel=image]').fancybox({
+			type        : 'image',
+			openEffect  : 'fade',
+			closeEffect	: 'fade',
+			nextEffect  : 'fade',
+			prevEffect  : 'fade',
+			helpers     : {
+				title   : {
+					type : 'inside'
+				}
+			}
+		});
+
+		$('[rel=image-gallery]').fancybox({
+			nextEffect  : 'fade',
+			prevEffect  : 'fade',
+			helpers     : {
+				title   : {
+					type : 'inside'
+				},
+				buttons  : {},
+				media    : {}
+			}
+		});
+
+
+	})();
+	
+});
+	
+/* ------------------- Client Carousel --------------------- */
+
+jQuery(document).ready(function($){
+
+	$('.clients-carousel').flexslider({
+	    animation: "slide",
+		easing: "swing",
+	    animationLoop: true,
+	    itemWidth: 200,
+	    itemMargin: 1,
+	    minItems: 1,
+	    maxItems: 8,
+		controlNav: false,
+		directionNav: false,
+		move: 2
+     });
+
+});
+
+/* ------------------ Back To Top ------------------- */
+jQuery(document).ready(function($){
+
+	jQuery('#under-footer-back-to-top a').click(function(){
+		jQuery('html, body').animate({scrollTop:0}, 300); 
+		return false; 
+	});
+
+});	
+
+/* ------------------ Tooltips ----------------- */
+
+jQuery(document).ready(function($) {
+
+    $('.tooltips').tooltip({
+      selector: "a[rel=tooltip]"
+    })
+
+});
+
+/* ------------------ Progress Bar ------------------- */	
+
+jQuery(document).ready(function($){
+	
+	$('.meter > span').each(function() {
+		
+		var totalWidth = $(this).parent().width();
+		
+		var barWidth = $(this).width();
+		
+		var percent = barWidth/totalWidth * 100;
+
+		$(this).data('origWidth', $(this).width()).width(0).animate({
+			width: $(this).data('origWidth')
+		}, 1200, function(){
+			$(this).css('width', percent + '%');
+		});
+
+		
+	});
+});
+
+/* ------------------- Parallax --------------------- */
+
+jQuery(document).ready(function($){
+	
+	$('#da-slider').cslider({
+		autoplay	: true,
+		bgincrement	: 0
+	});
+
+});
+
+/* ------------------- Layered slider --------------------- */
+
+jQuery(document).ready(function($){
+	
+	$('#layerslider').layerSlider({
+		skinsPath : 'css/skins/',
+		skin : 'tabula',
+		thumbnailNavigation : 'always',				
+	});
+	
+});		
+
+
+/* -------------------- Isotope --------------------- */
+
+jQuery(document).ready(function () {
+	
+	$('#wall').imagesLoaded(function() {
+		
+		var $container = $('#wall');
+			$select = $('#filters select');
+
+		// initialize Isotope
+		$container.isotope({
+		// options...
+		resizable: false, // disable normal resizing
+		// set columnWidth to a percentage of container width
+	  	masonry: { columnWidth: $container.width() / 12 }
+		});
+
+		// update columnWidth on window resize
+		$(window).smartresize(function(){
+		
+			$container.isotope({
+			// update columnWidth to a percentage of container width
+				masonry: { columnWidth: $container.width() / 12 }
+			});
+		});
+
+
+		$container.isotope({
+			itemSelector : '.item'
+		});
+
+		$select.change(function() {
+			
+			var filters = $(this).val();
+
+				$container.isotope({
+					filter: filters
+				});
+			
+			});
+
+			var $optionSets = $('#filters .option-set'),
+		  	$optionLinks = $optionSets.find('a');
+
+		  	$optionLinks.click(function(){
+			
+				var $this = $(this);
+				// don't proceed if already selected
+				if ( $this.hasClass('selected') ) {
+			  		return false;
+				}
+			var $optionSet = $this.parents('.option-set');
+			$optionSet.find('.selected').removeClass('selected');
+			$this.addClass('selected');
+
+			// make option object dynamically, i.e. { filter: '.my-filter-class' }
+			var options = {},
+				key = $optionSet.attr('data-option-key'),
+				value = $this.attr('data-option-value');
+			// parse 'false' as false boolean
+			value = value === 'false' ? false : value;
+			options[ key ] = value;
+			if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
+			  // changes in layout modes need extra logic
+			  changeLayoutMode( $this, options )
+			} else {
+			  // otherwise, apply new options
+			  $container.isotope( options );
+			}
+
+			return false;
+			
+		  });
+		
+	});
+	
+});
+
+/* ------------------ Tabs ----------------- */
+
+function AutomaticTabsWidhtReset() {
+	
+	$('.nav-tabs').find('li').each(function(){
+
+		$(this).find('a').css('width', 'auto');
+
+	});
+		
+}
+
+function AutomaticTabsWidht() {
+		
+	var containerWidth = $('.tab-content').width();
+	
+	var tabsNavWidth = 0;
+	
+	$('.nav-tabs').find('li').each(function(){
+	
+		var liWidth = $(this).outerWidth();
+		
+		tabsNavWidth = tabsNavWidth + liWidth;
+		
+	});
+		
+		
+	if(tabsNavWidth > containerWidth) {
+		
+		var elements = $(".nav-tabs li").size();
+		
+		var newWidth = containerWidth / elements - 15;
+		
+		$('.nav-tabs').find('li').each(function(){
+
+			$(this).find('a').css('width', newWidth);
+
+		});	
+		
+	}
+	
+}
+
+
+jQuery(document).ready(function($) {
+	
+	$('#myTab a').click(function (e) {
+	  e.preventDefault();
+	  $(this).tab('show');
+	})
+	
+});
+
+/* ----------------- Contact Form ------------------- */		
+
+jQuery(document).ready(function($){
+		
+	var animateSpeed=100;
+	var emailReg = /^[a-zA-Z0-9._-]+@([a-zA-Z0-9.-]+\.)+[a-zA-Z0-9.-]{2,4}$/;
+
+	// Validating
+
+	function validateName(name) {
+	
+		if (name.val()=='*') {name.addClass('validation-error',animateSpeed); return false;}
+		else {name.removeClass('validation-error',animateSpeed); return true;}
+	
+	}
+
+	function validateEmail(email,regex) {
+				
+		if (!regex.test(email.val())) {email.addClass('validation-error',animateSpeed); return false;}
+		else {email.removeClass('validation-error',animateSpeed); return true;}
+	
+	}
+
+	function validateMessage(message) {
+		
+		if (message.val()=='') {message.addClass('validation-error',animateSpeed); return false;}
+		else {message.removeClass('validation-error',animateSpeed); return true;}
+	
+	}
+
+	$('input[name=name]').blur(function(){validateName($(this));});
+	$('input[name=email]').blur(function(){validateEmail($(this),emailReg); });
+	$('textarea[name=message]').blur(function(){validateMessage($(this)); });
+
+});
+
+jQuery(document).ready(function($){
+
+	$('#send').click(function(){
+
+		$.post("contactForm.php", { 
+
+			new_message: 1,
+			name: $('input[name=name]').val(),
+			message_email: $('input[name=email]').val(),
+			www: $('input[name=www]').val(),
+			message: $('textarea[name=message]').val()
+
+		}, function(data) {
+
+			if(data==1) {
+
+				alert('Message was sent');
+
+			} else {
+
+				alert('Ooops something goes wrong, try one more time!');
+
+			}
+
+		});
+		
+		return false;
+
+	});
+
+});
+
+/* -------------------- Width Functions --------------------- */
+
+jQuery(document).ready(function($){
+	
+	widthFunctions();
+
+});
+
+
+$(window).bind("resize", widthFunctions);
+
+function widthFunctions(e) {
+	
+	AutomaticTabsWidhtReset();
+	AutomaticTabsWidht();
+	
+    var winHeight = $(window).height();
+    var winWidth = $(window).width();
     
-  });
-
-/* Progressbar animation */
-
-    setTimeout(function(){
-
-        $('.progress-animated .bar').each(function() {
-            var me = $(this);
-            var perc = me.attr("data-percentage");
-
-            //TODO: left and right text handling
-
-            var current_perc = 0;
-
-            var progress = setInterval(function() {
-                if (current_perc>=perc) {
-                    clearInterval(progress);
-                } else {
-                    current_perc +=1;
-                    me.css('width', (current_perc)+'%');
-                }
-
-                me.text((current_perc)+'%');
-
-            }, 600);
-
-        });
-
-    },600);
-
-/* Slider */
-
-    $(function() {
-        // Horizontal slider
-        $( "#master1, #master2" ).slider({
-            value: 60,
-            orientation: "horizontal",
-            range: "min",
-            animate: true
-        });
-
-        $( "#master4, #master3" ).slider({
-            value: 80,
-            orientation: "horizontal",
-            range: "min",
-            animate: true
-        });        
-
-        $("#master5, #master6").slider({
-            range: true,
-            min: 0,
-            max: 400,
-            values: [ 75, 200 ],
-            slide: function( event, ui ) {
-                $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-            }
-        });
-
-
-        // Vertical slider 
-        $( "#eq > span" ).each(function() {
-            // read initial values from markup and remove that
-            var value = parseInt( $( this ).text(), 10 );
-            $( this ).empty().slider({
-                value: value,
-                range: "min",
-                animate: true,
-                orientation: "vertical"
-            });
-        });
-    });
-
-
-
-/* Support */
-
-$(document).ready(function(){
-  $("#slist a").click(function(e){
-     e.preventDefault();
-     $(this).next('p').toggle(200);
-  });
-});
-
-/* Scroll to Top */
-
-
-  $(".totop").hide();
-
-  $(function(){
-    $(window).scroll(function(){
-      if ($(this).scrollTop()>300)
-      {
-        $('.totop').slideDown();
-      } 
-      else
-      {
-        $('.totop').slideUp();
-      }
-    });
-
-    $('.totop a').click(function (e) {
-      e.preventDefault();
-      $('body,html').animate({scrollTop: 0}, 500);
-    });
-
-  });
-
-/* jQuery Notification (Gritter) */
-
-$(document).ready(function(){
-
-  /* Auto notification */
-
-  setTimeout(function() {
-
-            var unique_id = $.gritter.add({
-                // (string | mandatory) the heading of the notification
-                title: 'Howdy! User',
-                // (string | mandatory) the text inside the notification
-                text: 'Today you got some messages and new members. Please check it out!',
-                // (string | optional) the image to display on the left
-                image: './img/user-big.jpg',
-                // (bool | optional) if you want it to fade out on its own or just sit there
-                sticky: false,
-                // (int | optional) the time you want it to be alive for before fading out
-                time: '',
-                // (string | optional) the class name you want to apply to that specific message
-                class_name: 'gritter-custom'
-            });
-
-            // You can have it return a unique id, this can be used to manually remove it later using
-            setTimeout(function () {
-                $.gritter.remove(unique_id, {
-                    fade: true,
-                    speed: 'slow'
-                });
-            }, 10000);
-
-  }, 4000);
-
-  
-  /* On click notification. Refer ui.html file */
-
-  /* Regulat notification */
-  $(".notify").click(function(e){
-
-            e.preventDefault();
-            var unique_id = $.gritter.add({
-                // (string | mandatory) the heading of the notification
-                title: 'Howdy! User',
-                // (string | mandatory) the text inside the notification
-                text: 'Today you got some messages and new members. Please check it out!',
-                // (string | optional) the image to display on the left
-                image: './img/user-big.jpg',
-                // (bool | optional) if you want it to fade out on its own or just sit there
-                sticky: false,
-                // (int | optional) the time you want it to be alive for before fading out
-                time: '',
-                // (string | optional) the class name you want to apply to that specific message
-                class_name: 'gritter-custom'
-            });
-
-            // You can have it return a unique id, this can be used to manually remove it later using
-            setTimeout(function () {
-                $.gritter.remove(unique_id, {
-                    fade: true,
-                    speed: 'slow'
-                });
-            }, 6000);
-
-  });
-
-  /* Sticky notification */
-  $(".notify-sticky").click(function(e){
-
-            e.preventDefault();
-            var unique_id = $.gritter.add({
-                // (string | mandatory) the heading of the notification
-                title: 'Howdy! User',
-                // (string | mandatory) the text inside the notification
-                text: 'Today you got some messages and new members. Please check it out!',
-                // (string | optional) the image to display on the left
-                image: './img/user-big.jpg',
-                // (bool | optional) if you want it to fade out on its own or just sit there
-                sticky: false,
-                // (int | optional) the time you want it to be alive for before fading out
-                time: '',
-                // (string | optional) the class name you want to apply to that specific message
-                class_name: 'gritter-custom'
-            });
-
-  });
-
-  /* Without image notification */
-  $(".notify-without-image").click(function(e){
-
-            e.preventDefault();
-            var unique_id = $.gritter.add({
-                // (string | mandatory) the heading of the notification
-                title: 'Howdy! User',
-                // (string | mandatory) the text inside the notification
-                text: 'Today you got some messages and new members. Please check it out!',
-                // (bool | optional) if you want it to fade out on its own or just sit there
-                sticky: false,
-                // (int | optional) the time you want it to be alive for before fading out
-                time: '',
-                // (string | optional) the class name you want to apply to that specific message
-                class_name: 'gritter-custom'
-            });
-
-  });
-
-/* Remove notification */
-
-    $(".notify-remove").click(function(){
-
-      $.gritter.removeAll();
-      return false;
-
-    });
-
-
-});
-
-
-/* Date picker */
-
-  $(function() {
-    $('#datetimepicker1').datetimepicker({
-      pickTime: false
-    });
-  });
-
-
-
-   $(function() {
-    $('#datetimepicker2').datetimepicker({
-      pickDate: false
-    });
-  });
-
-
-  $(function() {
-    $( "#todaydate" ).datepicker();
-  });
-
-
-
-/* Bootstrap toggle */
-
-$('.toggle-button').toggleButtons({
-    style: {
-        // Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
-        enabled: "danger"
-    }
-});
-
-$('.warning-toggle-button').toggleButtons({
-    width:130,
-    style: {
-        // Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
-        enabled: "success",
-        disabled: "danger"
-    },
-    label: {
-        enabled: "Enabled",
-        disabled: "Disabled"
-    }
-});
-
-$('.info-toggle-button').toggleButtons({
-    style: {
-        // Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
-        enabled: "info"
-    }
-});
-
-$('.success-toggle-button').toggleButtons({
-    style: {
-        // Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
-        enabled: "warning"
-    }
-});
-
-
-/* CL Editor */
-
-$(".cleditor").cleditor({
-    width: "auto",
-    height: "auto"
-});
-
-/* Modal fix */
-
-$('.modal').appendTo($('body'));
-
-/* Pretty Photo for Gallery*/
-
-jQuery("a[class^='prettyPhoto']").prettyPhoto({
-overlay_gallery: false, social_tools: false
-});
-
-
-/* Notification box */
-
-
-$('.slide-box-head').click(function() {
-    var $slidebtn=$(this);
-    var $slidebox=$(this).parent().parent();
-    if($slidebox.css('right')=="-252px"){
-      $slidebox.animate({
-        right:0
-      },500);
-      $slidebtn.children("i").removeClass().addClass("icon-chevron-right");
-    }
-    else{
-      $slidebox.animate({
-        right:-252
-      },500);
-      $slidebtn.children("i").removeClass().addClass("icon-chevron-left");
-    }
-}); 
-
-
-$('.sclose').click(function(e){
-  e.preventDefault();
-  var $wbox = $(this).parent().parent().parent();
-  $wbox.hide(0);
-});
-
-
-  $('.sminimize').click(function(e){
-    e.preventDefault();
-    var $wcontent = $(this).parent().parent().next('.slide-content');
-    if($wcontent.is(':visible')) 
-    {
-      $(this).children('i').removeClass('icon-chevron-down');
-      $(this).children('i').addClass('icon-chevron-up');
-    }
-    else 
-    {
-      $(this).children('i').removeClass('icon-chevron-up');
-      $(this).children('i').addClass('icon-chevron-down');
-    }            
-    $wcontent.toggle(0);
-  }); 
-
-  
+	if (winWidth < 980 && winWidth > 767) {
+		
+		if($("#wall").width()) {
+			
+			if($(".item").hasClass("span3")) {
+
+				$(".item").removeClass("span3");
+				$(".item").addClass("span4");
+
+			}
+			
+		}
+		
+		if($(".lr-page").hasClass("span4 offset4")) {
+			
+			$(".lr-page").removeClass("span4 offset4");
+			$(".lr-page").addClass("span6 offset3");
+			
+			$("#page-title").removeClass("span4 offset4");
+			$("#page-title").addClass("span6 offset3");
+		}
+						
+	} else {
+		
+		if($("#wall").width()) {
+			
+			if($(".item").hasClass("span4")) {
+
+				$(".item").removeClass("span4");
+				$(".item").addClass("span3");
+
+			}
+			
+		}
+		
+		if($(".lr-page").hasClass("span6 offset3")) {
+			
+			$(".lr-page").removeClass("span6 offset3");
+			$(".lr-page").addClass("span4 offset4");
+			
+			$("#page-title").removeClass("span6 offset3");
+			$("#page-title").addClass("span4 offset4");
+		}
+			
+	}
+	
+}

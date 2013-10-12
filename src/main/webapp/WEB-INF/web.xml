@@ -2,7 +2,7 @@
 <web-app id="WebApp_ID" version="2.4"
 	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-	<display-name>marketing</display-name>
+	<display-name>changero</display-name>
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
@@ -27,7 +27,7 @@
 
 	<!-- 监听器的配置 -->
 	<listener>
-		<listener-class>com.bd17kaka.marketing.listener.SendCloudContextListener</listener-class>
+		<listener-class>com.bd17kaka.changero.listener.SendCloudContextListener</listener-class>
 	</listener>
 
 	<!-- 编码过滤 -->
@@ -58,7 +58,7 @@
  	<!-- 用户登陆过滤器filter -->
  	<filter>
 		<filter-name>IdentityFilter</filter-name>
-		<filter-class>com.bd17kaka.marketing.filter.IdentityFilter</filter-class>
+		<filter-class>com.bd17kaka.changero.filter.IdentityFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>IdentityFilter</filter-name>
