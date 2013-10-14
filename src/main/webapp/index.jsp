@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="csstransforms no-csstransforms3d csstransitions js cssanimations csstransitions js inlinesvg" lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -50,7 +52,8 @@
 </head>
 <body>
 
-		
+	<jsp:include page="./include/header.jsp"></jsp:include>
+
 	<!--start: Container -->
 	<div class="container">
 				
